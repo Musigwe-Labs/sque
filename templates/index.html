@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="robots" content="noindex,nofollow">
+      <title>Squeecoin</title>
+      <link rel="stylesheet" href="{{ url_for('static', path='assets/css/bootstrap.min.css') }}">
+      
+      <link rel="stylesheet" href="{{ url_for('static', path='assets/css/all.min.css') }}">
+      
+      <link rel="stylesheet" href="{{ url_for('static', path='assets/css/style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', path='assets/css/responsive.css') }}">
+      <style type="text/css">@font-face {font-family:Barlow;font-style:normal;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/latin/100/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/100/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/100/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/200/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/latin/200/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/200/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/300/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/latin/300/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/300/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/500/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/500/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/latin/500/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/600/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/600/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/latin/600/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/700/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/800/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/800/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/latin/800/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/latin/900/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/900/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:normal;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/900/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/latin/100/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/100/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:100;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/100/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/200/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/latin/200/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:200;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/200/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/300/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/300/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:300;src:url(/cf-fonts/s/barlow/5.0.11/latin/300/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/400/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:400;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/400/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/latin/500/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/500/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:500;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/500/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/600/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/600/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:600;src:url(/cf-fonts/s/barlow/5.0.11/latin/600/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/latin/700/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/700/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:700;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/700/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/800/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/800/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:800;src:url(/cf-fonts/s/barlow/5.0.11/latin/800/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/vietnamese/900/italic.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/latin/900/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Barlow;font-style:italic;font-weight:900;src:url(/cf-fonts/s/barlow/5.0.11/latin-ext/900/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+      <link rel="shortcut icon" href="{{ url_for('static', path='assets/img/favicon.png') }}" type="image/x-icon">
+      
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet">
+
+   </head>
+   <body class="short-stack-regular">
+      <header class="header-area">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="header-main d-flex justify-content-between align-items-center">
+                     <div class="header-logo">
+                        
+                        <a href="#"><img src="{{ url_for('static', path='assets/img/LOGOS.png') }}" alt="logo"></a>
+                     </div>
+                     <div class="header-right d-flex align-items-center">
+                        <nav class="navbar navbar-expand-lg">
+                           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                              <div class="sandwitch">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                              </div>
+                           </button>
+                           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                 <li class="nav-item active">
+                                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                                 </li>
+                                 <!-- <li class="nav-item">
+                                    <a class="nav-link" href="#about">About</a>
+                                 </li>
+                                  -->
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="#tokenomics">Tokenomics</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="#roadmap">Roadmap</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="#token">Token</a>
+                                 </li>
+                                 <!-- <li class="nav-item">
+                                    <a class="nav-link" href="#contact">Contact</a>
+                                 </li> -->
+                              </ul>
+                              <div class="header-btn ms-3">
+                                 <a class="btn btn-secondary" href="">Buy Now</a>
+                              </div>
+                           </div>
+                        </nav>
+                        <div class="header-btn ms-3">
+                           <a class="btn btn-secondary" href="">Buy Now</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <main class="main--area p-120 pt-0">
+         <section class="slider__area slider__bg position-relative">
+            <div class="slider-activee">
+               <div class="single-slider">
+                  <div class="container custom-container">
+                     <div class="row justify-content-between">
+                        <div class="col-lg-6">
+                           <div class="slider__content">
+                              <h6 class="sub-title">Lives forever on SOL</h6>
+                              <h2 class="title">Squee coin</h2>
+                              <h3>Meet around the globe</h3>
+                              <p>Capturing the cute and viral vibe of PNUT - Living forever on Solana 🐿️🥜 <br>
+                                 $SQUEE 🐿️🥜</p>
+                              <div class="slider__btn">
+                                 <a href="" class="btn btn-primary"><span>Airdrop</span></a>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xxl-6 col-xl-5 col-lg-6">
+                           <div class="slider__img text-center">
+                              <img src="{{ url_for('static', path='assets/images/squeecoin.png') }}">
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="slider__shapes">
+               
+               <img src="{{ url_for('static', path='assets/images/slider/slider_shape01.png') }}" alt="shape">
+               <img src="{{ url_for('static', path='assets/images/slider/slider_shape02.png') }}" alt="shape">
+               <img src="{{ url_for('static', path='assets/images/slider/slider_shape03.png') }}" alt="shape">
+               <img src="{{ url_for('static', path='assets/images/slider/slider_shape04.png') }}" alt="shape">
+            </div>
+         </section>
+         <section class="count-area position-relative">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="count-main d-flex justify-content-between">
+                        <div class="count-box text-center">
+                           <span>Total Supply</span>
+                           <h2>10M</h2>
+                        </div>
+                        <div class="count-box text-center">
+                           <span>Buy Tax</span>
+                           <h2>0</h2>
+                        </div>
+                        <div class="count-box text-center">
+                           <span>Sell Tax</span>
+                           <h2>0%</h2>
+                        </div>
+                        <div class="count-box text-center">
+                           <span>Buy Back</span>
+                           <h2>2%</h2>
+                        </div>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="about-section p-120" id="about">
+            <div class="container">
+               <div class="row align-items-center">
+                  <!-- <div class="col-lg-6 col-12">
+                     <div class="about-media text-center">
+                        <img src="assets/images/about.png" alt="">
+                     </div>
+                  </div> -->
+                  <div class="col-12">
+                     <div class="about-info text-center">
+                        <div class="section-title mb-30">
+                            <h2>About <span>Squeecoin</span></h2>
+                        </div>
+                        <div class="about-des">
+                           <p>We are here with the world of meme coins! We're a community-driven cryptocurrency, fueled by viral memes and social media trends. Embrace laughter, innovation, and endless possibilities as we ride the wave of fun and financial excitement together!</p>
+                           <div class="about-btn">
+                              <a class="btn btn-primary" href=""><span>Learn More</span></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="how-to-buy-section" id="where-to-buy">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="section-title mb-30">
+                        <h2>WHERE AND <span>HOW TO BUY</span></h2>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="row align-items-center">
+                  <div class="col-lg-6">
+                     <div class="buy-points">
+                        <ul>
+                           <li>Research and choose Squeecoin based on community strength and development transparency.</li>
+                           <li>Select a reputable cryptocurrency exchange that supports the desired meme coin.</li>
+                           <li>Create an account on the chosen exchange, completing the necessary identity verification.</li>
+                           <li>Enhance account security with two-factor authentication (2FA).</li>
+                           <li>Deposit funds into your exchange account using fiat or cryptocurrencies.</li>
+                           <li>Locate the meme coin trading pair (e.g., MEME/BTC or MEME/ETH) on the exchange.</li>
+                           <li>Place the buy order for your desired amount of Squeecoins and wait for the transaction to be confirmed.</li>
+                        </ul>
+                        <div class="buy-btns">
+                           <a href="" class="btn btn-primary"><span>Watch Tutorial</span></a>
+                           <a href="" class="btn btn-secondary">Buy Now</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                     <div class="buy-media text-center">
+                        <img src="{{ url_for('static', path='assets/images/buy-token.png') }}" alt="">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="tokenomics-section p-120" id="tokenomics">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="section-title text-center mb-60">
+                        <h2>Tokenomics</h2>
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-center">
+                  <div class="col-lg-6 col-12">
+                     <div class="tokenomics-media">
+                        
+                        <img src="{{ url_for('static', path='assets/images/tokenomics.png') }}">
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-12">
+                     <div class="tokenomics-intro">
+                        <div class="tokenomics-item">
+                           <h4><span></span> 55%</h4>
+                           <p>Lp+ Staking Rewards</p>
+                        </div>
+                        <div class="tokenomics-item">
+                           <h4><span></span> 10%</h4>
+                           <p>Team (Lock for 6 months)</p>
+                        </div>
+                        <div class="tokenomics-item">
+                           <h4><span></span> 15%</h4>
+                           <p>Marketing</p>
+                        </div>
+                        <div class="tokenomics-item">
+                           <h4><span></span> 20%</h4>
+                           <p>Airdrop</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="roadmap-section" id="roadmap">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-5 col-lg-6">
+                     <div class="roadmap-left">
+                        <div class="section-title mb-30">
+                           <h2>A LOOK INTO <span>ROADMAPS</span> SEASONS</h2>
+                        </div>
+                        <p class="mb-30">With Season 1 Ending with our play and Duis elementum sollicitudin is yaugue euismods Nulla ulla Player-focused updates games from Mobile App and Enjoy.</p>
+                        <div class="roadmap-btn">
+                           <a class="btn btn-secondary" href="">Roadmap</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-7 col-lg-6">
+                     <div class="roadmap-steps-wrap">
+                        <div class="roadmap-steps-item">
+                           <h3>Phase 1: Lift Off</h3>
+                           <p>Fair Launch $SQUEE On SOLANA</p>
+                           <ul>
+                              <li>Grow The Community On Twitter And Telegram</li>
+                              <li>Reward Early Adopters For Helping Spread The Word</li>
+                              <li>Get Featured On Top-Tier Crypto Media</li>
+                              <li>Secure A Spot On Coinmarketcap And CoinGecko</li>
+                           </ul>
+                        </div>
+                        <div class="roadmap-steps-item">
+                           <h3>Phase 2: Bring The Fun</h3>
+                           <p>Fair Launch $SQUEE On SOLANA</p>
+                           <ul>
+                              <li>Behold: The First CEX Listing</li>
+                              <li>Official Partnership With NiceGram The World's First Platform-Runner Meme Game</li>
+                              <li>A Free Grumps Ordinals NFT For All Holders (To Take To The Moon In The Game, Obvs)</li>
+                              <li>NFTs And Rewards Galore</li>
+                              <li>The World's First Platform-Runner Meme Game</li>
+                           </ul>
+                        </div>
+                        <div class="roadmap-steps-item">
+                           <h3>Phase 3: Moon Landing</h3>
+                           <p>Fair Launch $SQUEE On SOLANA</p>
+                           <ul>
+                              <li>Ordinals KOL Activations, A Twitch Gaming Competition, And NiceGram Continued</li>
+                              <li>Official Partnership With NiceGram The World's First Platform-Runner Meme Game</li>
+                              <li>One-Of-A-Kind Staking Enabled By The BRC-30 Protocol</li>
+                              <li>Launch Of Grumpy's Very Own Native Crypto Wallet</li>
+                              <li>The Moon Landing 3.0, Grumpy Style</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="token-area p-120 pb-0" id="token">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-lg-6 col-12">
+                     <div class="token-info">
+                        <div class="section-title mb-30">
+                           <h2>SQUEE <span>Coin</span></h2>
+                        </div>
+                        <p>$SQUEE Ain't Just Another Squeecoin. We're Building On Top Of The BRC20 Protocol - One Of The Fastest Growing Protocols Out There. Forget The Hype, Ride The Grumpy Wave Instead. We're Hissing Around On DEX's For Now, But Expect Some Pretty Epic CEX's To Follow!</p>
+                        <div class="token-btn">
+                           <a href="" class="btn btn-secondary">Learn More</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-5 offset-lg-1 col-12">
+                     <div class="token-media">
+                        
+                        <img src="{{ url_for('static', path='assets/images/squeecoin.png') }}" alt="">
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="token-supply-main">
+                        <div class="token-supply d-flex justify-content-between">
+                           <div class="supply-box position-relative">
+                              
+                              <img src="{{ url_for('static', path='assets/images/dollar.png') }}" alt="">
+                              <h3>Total Supply</h3>
+                              <h2>20,000,000<span>(Twenty Million)</span></h2>
+                           </div>
+                           <div class="supply-box text-end position-relative">
+                              <img src="{{ url_for('static', path='assets/images/money.png') }}" alt="">
+                              
+                              <h3>Max Supply</h3>
+                              <h2>10,000,000 <span>(Ten Million)</span></h2>
+                           </div>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="65" height="5" viewBox="0 0 65 5">
+                              <path d="M968,5630h65l-4,5H972Z" transform="translate(-968 -5630)"></path>
+                           </svg>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+      <footer class="footer-style-two has-footer-animation" id="contact">
+           <div class="footer__country">
+               <div class="container custom-container">
+                   <div class="row">
+                       <div class="col-6">
+                           <div class="section-title mb-30">
+                               <h2><span>$SQUEE</span></h2>
+                           </div>
+                       </div>
+                       <div class="col-6">
+                           <div class="section-title mb-30 text-center text-sm-end">
+                               <h2><span>COIN</span></h2>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="footer__two-widgets">
+               <div class="container custom-container">
+                   <div class="row">
+                       <div class="col-md-4 col-sm-7 order-1 order-md-0">
+                           <div class="footer-el-widget">
+                               <h4 class="title">About us</h4>
+                               <div class="footer-el-menu">
+                                   <ul class="list-wrap start">
+                                       <li><a href="">Tokenomics</a></li>
+                                       <li><a href="">Roadmap</a></li>
+                                       <li><a href="">SWAP</a></li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-md-4 col-sm-5 order-0 order-md-2">
+                           <div class="footer-el-widget text-start text-md-center widget_nav_menu">
+                               <div class="footer-el-logo mb-30">
+                                   <a href="index.html"><img src="{{ url_for('static', path='assets/images/logo.png') }}" alt="Mykd"></a>
+                                   
+                               </div>
+                               <div class="footer-el-menu">
+                                   <ul class="list-wrap">
+                                       <li><a href="">Home</a></li>
+                                       <li><a href="">About Us</a></li>
+                                       <li><a href="">Tournament</a></li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-md-4 col-sm-7 order-3">
+                           <div class="footer-el-widget text-start text-md-end">
+                               <h4 class="title">Coming Soon</h4>
+                               <div class="footer-el-menu">
+                                   <ul class="list-wrap end">
+                                       <li><a href="">NFT</a></li>
+                                       <li><a href="">Influencers</a></li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!-- <div class="copyright__wrap -style-two">
+               <div class="container custom-container">
+                   <div class="row align-items-center">
+                       <div class="col-lg-6">
+                           <div class="copyright__text text-center text-lg-start">
+                               <p>Copyright © 2023 - All Rights Reserved By <span>MEME Tokens</span></p>
+                           </div>
+                       </div>
+                       <div class="col-lg-6">
+                           <div class="copyright__menu">
+                               <ul class="list-wrap d-flex flex-wrap justify-content-center justify-content-lg-end">
+                                   <li><a href="">Contact Us</a></li>
+                                   <li><a href="">Join our team</a></li>
+                                   <li><a href="">Privacy Policy</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div> -->
+       </footer>
+       <div id="to-top"><i class="fas fa-arrow-up fa-fw"></i></div>
+      <script src="{{ url_for('static', path='assets/js/jquery-3.6.0.min.js') }}"></script>
+      
+      <script src="{{ url_for('static', path='assets/js/bootstrap.bundle.min.js') }}"></script>
+      
+      <script src="{{ url_for('static', path='assets/js/custom.js') }}"></script>
+      
+   <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8ed73b6fea6493ff',t:'MTczMzQzNTIyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+{{ url_for('static', path='assets/js/custom.js') }}
