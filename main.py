@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from database import engine, get_db
 from contextlib import asynccontextmanager
+from models import User
 from models import create_db_and_tables
 from fastapi import Depends, HTTPException, status, Request
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -84,9 +85,13 @@ app.include_router(pq.router)"""
 
 
 
-"""class UserAdmin(ModelView, model=User):
+class UserAdmin(ModelView, model=User):
     column_list = "__all__"
-"""
+
+
+
+admin.add_view(UserAdmin)
+
 
 
 
@@ -94,7 +99,7 @@ app.include_router(pq.router)"""
 
 
 #admin.add_view(ModelView(Todos))
-"""admin.add_view(UserAdmin)
+"""
 
 admin.add_view(LevelAdmin)
 admin.add_view(OTPAdmin)
