@@ -58,7 +58,7 @@
             <div class="col-md-12 ">
             
                 <main class="container my-5" >
-                  <form id="airdrop-form" action="submit.php" method="post" class="p-4  rounded" style="border: 1px solid #0b7f80;">
+                  <form id="airdrop-form" action="/dashboard/" method="get" class="p-4  rounded" style="border: 1px solid #0b7f80;">
                     <h4 class="text-uppercase  mb-3" style="color: bisque;">Wallet Address</h4>
                     
                     <!-- Wallet Address Input -->
@@ -69,9 +69,14 @@
                     
                     <!-- Submit Button -->
                     <div class="d-grid">
-
-                      <a href="{{ url_for('dashboard_b', wallet_add=4444) }}" target="_blank"  rel="noopener noreferrer" class="btn btn-info text-center" style="background-color: #0b7f80;;">Login</a>
-                    </div>
+                          <button
+                            type="submit"
+                            class="btn btn-info text-center"
+                            style="background-color: #0b7f80;"
+                          >
+                            Login
+                          </button>
+                      </div>
                   </form>
                 </main>
               

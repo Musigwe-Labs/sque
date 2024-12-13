@@ -13,6 +13,7 @@ class User(SQLModel, table=True):
     wallet: str = Field(unique=True)
     points: float = Field(default=0.0)
     referral_id: str = Field(nullable=True)
+    referral_count: int =Field(default=0)
     tasks: int = Field(default=0)
     ftwitter: bool = Field(default=False)
     ftelegram_comm: bool = Field(default=False)

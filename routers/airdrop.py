@@ -26,7 +26,7 @@ async def airdrop_login(request: Request):
 
 
 
-@router.get("/dashboard/{wallet_add}", response_class=HTMLResponse)
+@router.get("/dashboard/", response_class=HTMLResponse)
 async def dashboard_b(request: Request, wallet_add: str, db: db_dependency):
     statement = select(User).where(User.wallet == wallet_add)
     user = db.exec(statement).first()
