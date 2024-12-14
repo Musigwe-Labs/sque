@@ -1,6 +1,6 @@
 from fastapi.responses import HTMLResponse
 from fastapi import APIRouter, Request, status
-from typing import Annotated
+from typing import Annotated, Optional
 from utils import db_dependency
 from fastapi.templating import Jinja2Templates
 from sqlmodel import select
@@ -32,8 +32,10 @@ async def dashboard_b(request: Request, wallet_add: str, db: db_dependency):
     statement = select(User).where(User.wallet == wallet_add)
     user = db.exec(statement).first()
 
+    referral_link = f"{request.base_url}airdrop/?ref={user.referral_id}"
+
     return templates.TemplateResponse(
-        request=request, name="dashboard.html", context={"user": user})
+        request=request, name="dashboard.html", context={"user": user, "ref_link": referral_link})
 
 
 
@@ -44,7 +46,8 @@ async def airdrop_form(request: Request):
         request=request, name="squeeairdrop.html")
 
 @router.get("/airdropa/", response_class=HTMLResponse)
-async def airdrop_formpost(request: Request, wallet:str, rt_link: str, tg_username: str,  db: db_dependency):
+async def airdrop_formpost(request: Request, wallet:str, rt_link: str, db: db_dependency,
+                           tg_username: str,  ref: str =None):
     
     existing_user_state = select(User).where(User.wallet ==wallet)
     existing_user = db.exec(existing_user_state).first()
@@ -59,17 +62,41 @@ async def airdrop_formpost(request: Request, wallet:str, rt_link: str, tg_userna
             status_code=status.HTTP_403_FORBIDDEN,
         )
     
-    #Check and reward the person that refered
-    #Generate a Referal code
+    #Save User
+    
     
     new_user = User(wallet=wallet, rt_link=rt_link, tg_username=tg_username)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
+    print("ref:", ref)
+
+
+     #Check and reward the person that refered
+    referral_statement = select(User).where(User.referral_id ==ref)
+    refered_user = db.exec(referral_statement).first()
+
+    if not refered_user:
+        referral_link = f"{request.base_url}airdrop/?ref={new_user.referral_id}"
+
+        return templates.TemplateResponse(
+        request=request, name="dashboard.html", context={"user": new_user, "ref_link": referral_link})
+        
+
+    refered_user.points += 500
+
     
 
+
+    db.add(refered_user)
+    db.commit()
+    referral_link = f"{request.base_url}airdrop/?ref={new_user.referral_id}"
+
+
+
+
     return templates.TemplateResponse(
-        request=request, name="dashboard.html", context={"user": new_user})
+        request=request, name="dashboard.html", context={"user": new_user, "ref_link": referral_link})
 
 
 
