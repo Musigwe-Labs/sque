@@ -59,6 +59,9 @@ async def airdrop_formpost(request: Request, wallet:str, rt_link: str, tg_userna
             status_code=status.HTTP_403_FORBIDDEN,
         )
     
+    #Check and reward the person that refered
+    #Generate a Referal code
+    
     new_user = User(wallet=wallet, rt_link=rt_link, tg_username=tg_username)
     db.add(new_user)
     db.commit()
