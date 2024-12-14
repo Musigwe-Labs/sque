@@ -82,8 +82,10 @@
                             <a class="nav-link text-light" href="#Community">Community</a>
                         </li>
                         <li  class="nav-item mt-3 d-lg-block ms-auto">
-                            <a id="connectWallet" class="btn btn-outline-secondary btn-block text-center disable" href="#">Connect Wallet</a>
-
+                            <a id="webconnectWallet" class="btn btn-outline-secondary btn-block text-center disable" href="#">Connect Wallet</a>
+                            <a id="webdisconnectWallet" class="btn btn-outline-danger btn-block text-center d-none" href="#">
+                                Disconnect Wallet
+                              </a>  
                         </li>
                     </ul>
                 </div>
@@ -98,8 +100,11 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 mt-3">
                         
-                        <li id="connectWallet" class="nav-item mt-3">
-                            <a id="connectWallet" class="btn btn-outline-info btn-block text-center" href="#">Connect Wallet</a>
+                        <li class="nav-item mt-3">
+                            <a id="mobileconnectWallet" class="btn btn-outline-info btn-block text-center" href="#">Connect Wallet</a>
+                            <a id="mobiledisconnectWallet" class="btn btn-outline-danger btn-block text-center d-none" href="#">
+                                Disconnect Wallet
+                              </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Home</a>
@@ -325,7 +330,7 @@
 
 
     
-  // Detect the wallet provider (e.g., Phantom for Solana)
+  // Detect the wallet provider
   function getProvider() {
     if ("solana" in window) {
       const provider = window.solana;
@@ -336,7 +341,7 @@
     return null;
   }
 
-  // Function to connect the wallet
+  // Connect the wallet
   async function connectWallet() {
     const provider = getProvider();
 
@@ -346,33 +351,76 @@
     }
 
     try {
-      // Attempt to connect the wallet
       const resp = await provider.connect();
       console.log("Connected wallet public key:", resp.publicKey.toString());
 
-      // Update button text to show connection status
-      const connectButton = document.getElementById("connectWallet");
-      connectButton.textContent = "Wallet Connected!";
-      connectButton.classList.add("btn-success");
-      connectButton.classList.remove("btn-outline-secondary");
-      connectButton.href = "#"; // Disable link behavior
+      // Update UI
+      document.getElementById("webconnectWallet").classList.add("d-none");
+      document.getElementById("mobileconnectWallet").classList.add("d-none");
+      document.getElementById("mobiledisconnectWallet").classList.remove("d-none");
+      document.getElementById("webdisconnectWallet").classList.remove("d-none");
 
-      // Log connection event
+      // Log the connect event
       provider.on("connect", () => {
         console.log("Connected!");
       });
     } catch (err) {
-      // Handle connection errors
       console.error("Error connecting wallet:", err);
       alert(`Connection failed: ${err.message}`);
     }
   }
 
-  // Attach click event to the button
-  document.getElementById("connectWallet").addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default anchor tag behavior
-    connectWallet(); // Call the function to connect the wallet
+  // Disconnect the wallet
+  async function disconnectWallet() {
+    const provider = getProvider();
+
+    if (!provider) {
+      alert("No wallet provider detected.");
+      return;
+    }
+
+    try {
+      // Disconnect the wallet
+      await provider.disconnect();
+      console.log("Wallet disconnected.");
+
+      // Update UI
+      document.getElementById("webconnectWallet").classList.remove("d-none");
+      document.getElementById("mobileconnectWallet").classList.remove("d-none");
+      document.getElementById("webdisconnectWallet").classList.add("d-none");
+      document.getElementById("mobiledisconnectWallet").classList.add("d-none");
+
+      // Log the disconnect event
+      provider.on("disconnect", () => {
+        console.log("Disconnected!");
+      });
+    } catch (err) {
+      console.error("Error disconnecting wallet:", err);
+      alert(`Disconnection failed: ${err.message}`);
+    }
+  }
+
+  // Add event listeners to buttons
+  document.getElementById("webconnectWallet").addEventListener("click", (event) => {
+    event.preventDefault();
+    connectWallet();
   });
+
+  document.getElementById("mobileconnectWallet").addEventListener("click", (event) => {
+    event.preventDefault();
+    connectWallet();
+  });
+
+  document.getElementById("webdisconnectWallet").addEventListener("click", (event) => {
+    event.preventDefault();
+    disconnectWallet();
+  });
+
+  document.getElementById("mobiledisconnectWallet").addEventListener("click", (event) => {
+    event.preventDefault();
+    disconnectWallet();
+  });
+  
   
 
 </script>

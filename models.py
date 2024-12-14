@@ -19,6 +19,8 @@ class User(SQLModel, table=True):
     ftelegram_comm: bool = Field(default=False)
     f_telegram_channel: bool = Field(default=False)
     likes: bool = Field(default=False)
+    rt_link: str
+    tg_username: str
 
 
 

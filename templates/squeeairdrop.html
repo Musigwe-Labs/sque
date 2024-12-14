@@ -19,18 +19,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com" rel="preconnect"/>
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
-        <link rel="icon" href="assets/img/favicon.png"/>	
-        <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.css">
+        <link rel="icon" href="{{ url_for('static', path='assets/img/favicon.png') }}	"/>
+        
+        <link rel="stylesheet" href="{{ url_for('static', path='bootstrap-5.3.3/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', path='bootstrap-5.3.3/css/bootstrap.css') }}">
         <link rel="stylesheet" href="bootstrap-5.3.3/js/bootstrap.bundle.min.js">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="fontawesome/css/brands.min.css">
-        <link rel="stylesheet" href="fontawesome/css/all.min.css">
-        <link rel="stylesheet" href="fontawesome/css/solid.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', path='fontawesome/css/brands.min.css') }}	">
+        <link rel="stylesheet" href="{{ url_for('static', path='fontawesome/css/all.min.css') }}	">
+        <link rel="stylesheet" href="{{ url_for('static', path='fontawesome/css/solid.min.css') }}	">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet">
@@ -75,7 +76,7 @@
                           <h5 class="text-info">Claim $SQUEE Airdrop by Completing the Tasks.</h5>
                         </div>
                     
-                        <form id="airdrop-form" action="submit.php" method="post" class="p-4  rounded" style="border: 1px solid #0b7f80;">
+                        <form id="airdrop-form" action="/airdropa/" method="get" class="p-4  rounded" style="border: 1px solid #0b7f80;">
                           <!-- Task 1 -->
                           <div class="mb-3">
                             <p class="mt-3">
@@ -86,7 +87,7 @@
                             </p>
                             <p>- Like, Quote/Retweet the Pinned Post and Tag 3 of your friends in the Comment Section. *</p>
                             <label for="twitter-link" class="form-label text-info">Copy the Quote/Retweet Link and Paste Below:</label>
-                            <input type="url" id="twitter-link" name="twitterLink" class="form-control" placeholder="https://twitter.com/your_username/status/123456789" style="background-color: #022c2d00;border: 1px solid #0b7f80;" required>
+                            <input type="text" id="twitter-link" name="rt_link" class="form-control" placeholder="https://twitter.com/your_username/status/123456789" style="background-color: #022c2d00;border: 1px solid #0b7f80;" required>
                           </div>
                     
                           <!-- Task 2 -->
@@ -98,7 +99,7 @@
                               </a>
                             </p>
                             <label for="telegram-username" class="form-label text-info">Telegram Username *</label>
-                            <input type="text" id="telegram-username" name="telegramUsername" class="form-control" placeholder="@squeecoin_sol" style="background-color: #022c2d00; border: 1px solid #0b7f80;" required>
+                            <input type="text" id="telegram-username" name="tg_username" class="form-control" placeholder="@squeecoin_sol" style="background-color: #022c2d00; border: 1px solid #0b7f80;" required>
                           </div>
                     
                           <!-- Wallet Address -->
@@ -109,12 +110,18 @@
                     
                           <!-- Submit Button -->
                           <div class="d-grid gap-2">
-                            <a href="dashboard.html" target="_blank"  class="btn btn-info btn-block" style="background-color: #0b7f80;">Submit</a>
+                            <button
+                            type="submit"
+                            class="btn btn-info text-center"
+                            style="background-color: #0b7f80;"
+                          >
+                            Submit
+                          </button>
                           </div> <br><br>
                     
                           <!-- Login Link -->
                           <div class="text-cente mt-4">
-                            <a href="login.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info btn-sm">Login with your SOL Wallet</a>
+                            <a href="/airdrop/login" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info btn-sm">Login with your SOL Wallet</a>
                             <p class="mt-2">If already submitted before.</p>
                           </div>
                         </form>
@@ -133,7 +140,8 @@
                         <div class="footer-content d-flex justify-content-center">
 
                             <a href="" class="logo-wrapper w-inline-block">
-                                <img src="assets/img/LOGOS.png" height="60px" loading="lazy" alt="Logo" class="logo"/>
+                              
+                                <img src="{{ url_for('static', path='assets/img/LOGOS.png') }}	" height="60px" loading="lazy" alt="Logo" class="logo"/>
                                 
                             </a>
 
